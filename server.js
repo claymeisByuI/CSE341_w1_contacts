@@ -1,5 +1,4 @@
-﻿/* eslint-env node */
-const express = require("express");
+﻿const express = require("express");
 const app = express();
 
 const mongodb = require("./data/database");
@@ -8,7 +7,7 @@ const port = process.env.PORT || 8080;
 
 app.use("/", require("./routes"));
 
-mongodb.initDb((err, db) => {
+mongodb.initDb((err) => {
   if (err) {
     console.error("Database not running", err);
   } else {
