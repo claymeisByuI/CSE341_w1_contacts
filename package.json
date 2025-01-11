@@ -1,0 +1,19 @@
+{
+  "name": "cse341_w1_contacts",
+  "version": "1.0.0",
+  "description": "Contacts project",
+  "main": "server",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claymeisByuI/CSE341_w1_contacts.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/claymeisByuI/CSE341_w1_contacts/issues"
+  },
+  "homepage": "https://github.com/claymeisByuI/CSE341_w1_contacts#readme"
+}
