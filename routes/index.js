@@ -5,4 +5,5 @@ router.get("/", (req, res) => {
 });
 
 router.use("/users", require("./user"));
+router.use("/contacts", require("./user"));
 module.exports = router;
