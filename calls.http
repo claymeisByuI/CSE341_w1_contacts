@@ -1,0 +1,23 @@
+﻿# You can define a base URL variable if you like.
+@baseUrl = https://cse341-w1-contacts-5kwt.onrender.com
+# @baseUrl = http://localhost:8080
+
+###
+# GET: Base endpoint
+###
+GET {{baseUrl}}
+
+###
+# GET: All users
+###
+GET {{baseUrl}}/users
+
+###
+# GET: Single user by ID
+###
+GET {{baseUrl}}/users/6782dbba32262532c964292f
+
+###
+# GET: Single contact by ID
+###
+GET {{baseUrl}}/contacts/6782dbba32262532c964292f
