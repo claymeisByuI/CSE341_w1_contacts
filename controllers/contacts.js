@@ -35,13 +35,24 @@ const updateContact = async (req, res) => {
   /*
       #swagger.tags = ['contacts']
       #swagger.summary = 'Updates an existing user'
-    */
-  if (!req.body) {
-    res.status(400).send({ message: "Content can not be empty!" });
+      */
+  if (isEmptyObject(req.body)) {
+    res
+      .status(400)
+      .send({ message: "No Body Content.  Body can not be empty!" });
     return;
   }
+  const contact = new Contact({
+    _id: new ObjectId(req.body._id),
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday,
+  });
+  //
   const id = req.params.id;
-  Contact.findByIdAndUpdate(id, req.body, {})
+  Contact.findByIdAndUpdate(id, contact, {})
     .then((data) => {
       if (!data) {
         res.status(400).send({
@@ -139,3 +150,10 @@ module.exports = {
   updateContact: updateContact,
   deleteContact: deleteContact,
 };
+function isEmptyObject(obj) {
+  // First, ensure `obj` is indeed an object before checking its keys
+  if (obj && typeof obj === "object" && !Array.isArray(obj)) {
+    return Object.keys(obj).length === 0;
+  }
+  return false;
+}
