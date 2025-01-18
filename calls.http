@@ -1,6 +1,5 @@
-﻿# You can define a base URL variable if you like.
-@baseUrl = https://cse341-w1-contacts-5kwt.onrender.com
-# @baseUrl = http://localhost:8080
+﻿## environment  : dev
+@baseUrl = http://{{host}}
 
 ###
 # GET: Base endpoint
@@ -8,16 +7,58 @@
 GET {{baseUrl}}
 
 ###
-# GET: All users
+# GET: Single contact by ID
 ###
-GET {{baseUrl}}/users
+GET {{baseUrl}}/contacts
 
 ###
 # GET: Single user by ID
 ###
-GET {{baseUrl}}/users/6782dbba32262532c964292f
-
-###
-# GET: Single contact by ID
-###
 GET {{baseUrl}}/contacts/6782dbba32262532c964292f
+
+
+
+
+
+### 1) Get root endpoint
+GET {{baseUrl}}
+
+### 3) Get all contacts
+GET {{baseUrl}}/contacts/
+
+### 4) Create a new contact
+POST {{baseUrl}}/contacts/
+Content-Type: application/json
+
+{
+  "firstName": "stupid",
+  "lastName": "turtle",
+  "email": "sturtle@example.com",
+  "favoriteColor": "yellow",
+  "birthday": "1990-01-01"
+}
+> {%
+
+    // The REST Client extension allows JavaScript in these tags.
+    // This script extracts 'id' from the JSON response body and saves it to a variable called 'contactId'.
+    client.global.set("contactId", response.body._id);
+    console.log(client.global.get("contactId"))
+%}
+
+### 5) Get the newly created contact by ID
+GET {{baseUrl}}/contacts/{{contactId}}
+
+### 6) Update the newly created contact by ID
+PUT {{baseUrl}}/contacts/{{contactId}}
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "favoriteColor": "red",
+  "birthday": "1990-01-01"
+}
+
+### 7) Delete the contact by ID
+DELETE {{baseUrl}}/contacts/{{contactId}}
